@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Trang Web Cá Nhân</title>
+    <style>
+        @keyframes slideIn {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animation-container {
+            text-align: center;
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 100vh;
+        }
+
+        .container1 {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            height: 40vh;
+        }
+
+        .left {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right {
+            flex: 1;
+            text-align: center;
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Điều chỉnh độ cao của banner tại đây */
+            overflow: hidden;
+        }
+
+        .banner-video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .flip-box {
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            border: 1px solid #f1f1f1;
+            perspective: 1000px;
+        }
+
+        .flip-box-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-box:hover .flip-box-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-box-front, .flip-box-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-box-front {
+            background-color: #bd2c2c;
+            color: black;
+
+        }
+
+        .flip-box-back {
+            background-color: #e4c0dc;
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .checked {
+            color: orange;
+        }
+        .about-me {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.about-me h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.about-me p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+/* CSS cho phần bình luận */
+.comment-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .comment-form {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .comment-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .comment-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .comment-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .comment-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .comment-item .comment-avatar {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .comment-item .comment-content {
+            font-size: 14px;
+        }
+/*kỹ năng*/
+ .skill {
+        margin-bottom: 20px;
+    }
+
+    .skill-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .skill-bar {
+        height: 20px;
+        background-color: #f8f1f1;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .skill-progress {
+        height: 80%;
+        border-radius: 10px;
+        background-color: #e7b1cf;
+        animation: progress-animation 10s infinite; /* Hiệu ứng chạy */
+    }
+
+@keyframes progress-animation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+/* sở thích */
+.circle-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 20px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .circle .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .circle:hover .content {
+        opacity: 1;
+    }
+
+    /* Animation to flip the circles */
+    .flip-container {
+        perspective: 1000px;
+    }
+
+    .flipper {
+        transition: 0.6s;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .flip-container:hover .flipper {
+        transform: rotateY(180deg);
+    }
+
+    .front, .back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        backface-visibility: hidden;
+    }
+
+    .back {
+        transform: rotateY(180deg);
+    }
+    /*liên hê */
+    .contact-method {
+            border: 2px solid #cea4a4;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .contact-method i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="banner-container">
+        <video class="banner-video" autoplay muted loop>
+            <source src="c:\Users\honghanPC\Pictures\Screenshots\vd.mp4" type="video/mp4">
+            <!-- Cung cấp các nguồn video khác tại đây cho sự tương thích -->
+        </video>
+    </div>
+    <div class="animation-container">
+        <h1>GIỚI THIỆU BẢN THÂN</h1>
+    </div>
+    <div class="container1">
+        <div class="left">
+            <div class="flip-box">
+                <div class="flip-box-inner">
+                  <div class="flip-box-front">
+                    <img src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.6435-9/148417581_1099781100522534_7811955881556734491_n.jpg?stp=dst-jpg_s206x206&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEgDat7S63PbTpU0w3-Qe-kTv7VMwJMtlpO_tUzAky2Wno0w_RjbH15RXzBykF4FogkZ1aJO95OhoJmMml3SQIw&_nc_ohc=n4la3km7tNAQ7kNvgHHnM2z&_nc_ht=scontent.fsgn13-2.fna&oh=00_AfBqWjixWrWm-pxsId6TEejxfhhD7ExXJ-8Fw0_EIoQ4FQ&oe=665E275E" style=text-align:center;width:300px;height:400px">
+                  </div>
+                  <div class="flip-box-back">
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </div>
+                </div>
+              </div>
+        </div>
+        
+        <div class="right">
+            <p style="text-align: justify;">
+                <strong>Họ và tên:</strong> Nguyễn Hồng Hân
+            </p>
+            <p style="text-align: justify;">
+                <strong>Năm sinh :</strong> 2003
+            </p>
+            <p style="text-align: justify;">
+                <strong>Giới tính:</strong> Nữ
+            </p>
+            <p style="text-align: justify;">
+                <strong>Tuổi:</strong> 21
+            </p>
+            <p style="text-align: justify;">
+                <strong>Nghề nghiệp:</strong> Sinh viên trường Đại học Công nghiệp Thành phố Hồ Chí Minh
+                
+            </p>
+            <p style="text-align: justify;">
+                <strong>Chuyên ngành:</strong> Thương mại điện tử
+                </p>
+                     </div>
+                    </div>
+                <div class="about-me">
+                    <h2>About Me</h2>
+                    <p>Nguyễn Hồng Hân, một cô gái trẻ năng động và đầy nhiệt huyết, đang làm nổi bật tên tuổi của mình trong cộng đồng sinh viên tại Đại học Công nghiệp Thành phố Hồ Chí Minh. Sinh ra và lớn lên tại vùng quê yên bình của Tây Ninh, Hồng Hân mang trong mình nét đẹp mộc mạc và lòng kiên định của người con nông thôn.</p>
+                    <p>Hiện đang ở năm thứ ba của cuộc hành trình đại học, Hồng Hân đã chọn con đường học tập và phát triển bản thân trong ngành Thương mại Điện tử. Với niềm đam mê không ngừng và lòng quyết tâm bền bỉ, cô không chỉ là một sinh viên xuất sắc mà còn là một người bạn đồng hành đầy tinh thần lạc quan và trách nhiệm.</p>
+                    <p>Tự hào về nguồn gốc quê hương, Hồng Hân luôn giữ trong lòng tinh thần cống hiến và hướng về cộng đồng. Bằng sự sáng tạo và khả năng thích ứng linh hoạt, cô đã tham gia vào nhiều hoạt động văn hóa, xã hội tại trường và ngoại trường, từ việc tổ chức các sự kiện nhỏ cho cộng đồng sinh viên đến việc tham gia các dự án từ thiện và hỗ trợ xã hội.</p>
+                </div>
+                <div class="about-me">
+                    <h2>Kỹ năng </h2>
+                <div class="skill">
+                    <div class="skill-name">Làm Việc Nhóm</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%;"></div> <!-- Thay đổi độ dài tùy thuộc vào kỹ năng -->
+                    </div>
+                </div>
+                
+                <div class="skill">
+                    <div class="skill-name">Sáng Tạo</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div> <!-- Thay đổi độ dài tùy thuộc vào kỹ năng -->
+                    </div>
+                </div>
+                
+                <div class="skill">
+                    <div class="skill-name">Quản Lý Thời Gian</div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div> <!-- Thay đổi độ dài tùy thuộc vào kỹ năng -->
+                    </div>
+                </div>
+                </div>
+                
+
+                <div class="about-me">
+                    <h2>Sở thích </h2>
+                <div class="circle-container">
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="circle">
+                                <div class="front">
+                                    <img src="https://i.pinimg.com/736x/ba/b0/9a/bab09a6a8fc8182e4e2f67ce3243a52b.jpg" alt="Interest 1">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="circle">
+                                <div class="front">
+                                    <img src="https://vietnetco.vn/wp-content/uploads/2021/05/phim-thuc-te-ao-1.png" alt="Interest 2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="circle">
+                                <div class="front">
+                                    <img src="https://truongnhac.edu.vn/wp-content/uploads/2015/09/sp-am-nhac.jpg" alt="Interest 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="about-me">
+                    <h2>Thông tin liên hệ  </h2>
+                    <ul>
+                        <li class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <a href="hannguyen.2003gdg@gmail.com">hannguyen.2003gdg@gmail.com</a>
+                        </li>
+                        <li class="contact-method">
+                            <i class="fab fa-facebook"></i>
+                            <a href="https://www.facebook.com/example">Hân Nguyễn </a>
+                        </li>
+                        <li class="contact-method">
+                            <i class="fas fa-phone"></i>
+                        </li>
+                    </ul>
+                    </div>
+ <!-- Phần bình luận -->
+ <div class="comment-container">
+    <h2>Giải đáp</h2>
+    <form class="comment-form" id="commentForm">
+        
+        <textarea class="comment-input" placeholder="Hãy điền câu hỏi danh cho tôi nếu bạn muốn " id="commentInput"></textarea>
+        <button type="submit" class="comment-btn">Gửi</button>
+    </form>
+    <ul class="comment-list" id="commentList">
+        <!-- Danh sách bình luận sẽ được hiển thị ở đây -->
+    </ul>
+</div>
+
+<!-- Script JavaScript để xử lý bình luận -->
+<script>
+    const commentForm = document.getElementById('commentForm');
+    const commentInput = document.getElementById('commentInput');
+    const commentList = document.getElementById('commentList');
+
+    // Hàm để thêm một bình luận mới
+    function addComment(comment) {
+        const li = document.createElement('li');
+        li.classList.add('comment-item');
+        li.innerHTML = `
+            <img src="https://demoda.vn/wp-content/uploads/2023/01/hinh-anh-avatar-cute-1.jpg" alt="Avatar" class="comment-avatar">
+            <div class="comment-content">${comment}</div>
+        `;
+        commentList.appendChild(li);
+    }
+
+    // Xử lý sự kiện khi gửi bình luận
+    commentForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Ngăn chặn việc reload trang khi gửi form
+        const newComment = commentInput.value.trim();
+        if (newComment !== '') {
+            addComment(newComment);
+            commentInput.value = ''; // Xóa nội dung trong input sau khi gửi
+        }
+    });
+</script>
+
+
+</body>
+</html>
